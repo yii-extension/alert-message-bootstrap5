@@ -55,6 +55,28 @@ HTML;
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
+    public function testAlertMessageCloseButtonEnabledFalse(): void
+    {
+        $this->flash->add(
+            'success',
+            [
+                'body' =>  'Body message',
+                'closeButton' => false,
+            ],
+            true,
+        );
+
+        $html = AlertMessage::widget()->render();
+
+        $expected = <<<HTML
+<div id="w0-alert" class="alert-success alert" role="alert">Body message
+
+</div>
+HTML;
+
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
     public function testAlertMessageOptions(): void
     {
         $this->flash->add(

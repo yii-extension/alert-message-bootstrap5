@@ -8,9 +8,16 @@
 
 [![Total Downloads](https://poser.pugx.org/yii-extension/alert-message-bootstrap5/downloads.png)](https://packagist.org/packages/yii-extension/alert-message-bootstrap5)
 [![Build Status](https://github.com/yii-extension/alert-message-bootstrap5/workflows/build/badge.svg)](https://github.com/yii-extension/alert-message-bootstrap5/actions?query=workflow%3Abuild)
-[![codecov](https://codecov.io/gh/yii-extension/alert-message-bootstrap5/branch/main/graph/badge.svg?token=KB6T5KMGED)](https://codecov.io/gh/yii-extension/alert-message-bootstrap5)
+[![codecov](https://codecov.io/gh/yii-extension/alert-message-bootstrap5/branch/master/graph/badge.svg?token=s48h3hIC46)](https://codecov.io/gh/yii-extension/alert-message-bootstrap5)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https://badge-api.stryker-mutator.io/github.com/yii-extension/alert-message-bootstrap5/master)](https://dashboard.stryker-mutator.io/reports/github.com/yii-extension/alert-message-bootstrap5/master)
 [![static analysis](https://github.com/yii-extension/alert-message-bootstrap5/workflows/static%20analysis/badge.svg)](https://github.com/yii-extension/alert-message-bootstrap5/actions?query=workflow%3A%22static+analysis%22)
+[![type-coverage](https://shepherd.dev/github/yii-extension/alert-message-bootstrap5/coverage.svg)](https://shepherd.dev/github/yii-extension/alert-message-bootstrap5)
+
+## Installation
+
+```shell
+composer require yii-extension/alert-message-bootstrap5
+```
 
 ## Usage
 
@@ -34,6 +41,7 @@ final class Action
             'success', // types: [danger, dark, info, primary, secundary, success, warning]
             [
                 'body' => 'body message flash', // Its mandatory.
+                'closeButton' => true, //Its optional for value default true.
                 'options' => ['id' => 'testMe'], // Its optional.
             ],
             true,
@@ -54,12 +62,6 @@ use Yii\Extension\Widget\AlertMessage;
 ?>
 
 <?= AlertMessage::widget() ?>
-```
-
-## Installation
-
-```shell
-composer require yii-extension/alert-message-bootstrap5
 ```
 
 ### Unit testing
