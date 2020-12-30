@@ -48,7 +48,7 @@ final class AlertMessageTest extends TestCase
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body message
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -92,7 +92,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="testMe" class="alert-success alert alert-dismissible" role="alert">Body message
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -122,9 +122,9 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div><div id="w1-alert" class="alert-danger alert alert-dismissible" role="alert">Body 2
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -145,7 +145,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-danger alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -167,7 +167,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-dark alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -189,7 +189,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -211,7 +211,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-primary alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -233,7 +233,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
@@ -255,7 +255,7 @@ HTML;
 
         $expected = <<<HTML
 <div id="w0-alert" class="alert-warning alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 HTML;
 
