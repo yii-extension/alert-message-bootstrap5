@@ -41,27 +41,28 @@ final class AlertMessage extends Widget
                 foreach ($data as $message) {
                     $body = '';
                     $closeButtonEnabled = true;
-                    $options = [];
+                    $options = ['encode' => false];
 
                     if (isset($message['body']) && is_string($message['body'])) {
                         $body = $message['body'];
                     }
 
+                    if (isset($message['closeButton']) && is_bool($message['closeButton'])) {
+                        $closeButtonEnabled = $message['closeButton'];
+                    }
+
                     if (isset($message['options']) && is_array($message['options'])) {
-                        $options = $message['options'];
+                        $options = array_merge($message['options'], $options);
                     }
 
                     /** @psalm-suppress MixedArgumentTypeCoercion */
                     Html::addCssClass($options, $this->alertTypes[$type]);
 
-                    $alertWidget = Alert::widget()->withBody($body)->withOptions($options);
-
-                    if (isset($message['closeButton']) && $message['closeButton'] === false) {
-                        $alertWidget = $alertWidget->withoutCloseButton();
-                    }
-
                     if ($body !== '') {
-                        $html .= $alertWidget;
+                        $html .= Alert::widget()
+                            ->body($body)
+                            ->closeButtonEnabled($closeButtonEnabled)
+                            ->options($options);
                     }
                 }
             }
