@@ -40,15 +40,14 @@ final class AlertMessage extends Widget
                 /** @var array $message */
                 foreach ($data as $message) {
                     $body = '';
-                    $closeButtonEnabled = true;
-                    $options = ['encode' => false];
+                    $options = [];
 
                     if (isset($message['body']) && is_string($message['body'])) {
                         $body = $message['body'];
                     }
 
                     if (isset($message['options']) && is_array($message['options'])) {
-                        $options = array_merge($message['options'], $options);
+                        $options = $message['options'];
                     }
 
                     Html::addCssClass($options, $this->alertTypes[$type]);
