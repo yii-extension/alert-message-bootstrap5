@@ -46,16 +46,16 @@ final class AlertMessageTest extends TestCase
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body message
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body message
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testAlertMessageCloseButtonEnabledFalse(): void
+    public function testAlertMessageWithoutCloseButton(): void
     {
         $this->flash->add(
             'success',
@@ -68,11 +68,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-success alert" role="alert">Body message
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert" role="alert">Body message
 
-</div>
-HTML;
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -90,11 +90,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="testMe" class="alert-success alert alert-dismissible" role="alert">Body message
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="testMe" class="alert-success alert alert-dismissible" role="alert">Body message
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -120,13 +120,13 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div><div id="w1-alert" class="alert-danger alert alert-dismissible" role="alert">Body 2
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div><div id="w1-alert" class="alert-danger alert alert-dismissible" role="alert">Body 2
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -143,11 +143,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-danger alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-danger alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -165,11 +165,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-dark alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-dark alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -187,11 +187,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -209,11 +209,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-primary alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-primary alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -231,11 +231,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }
@@ -253,11 +253,11 @@ HTML;
 
         $html = AlertMessage::widget()->render();
 
-        $expected = <<<HTML
-<div id="w0-alert" class="alert-warning alert alert-dismissible" role="alert">Body 1
-<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-</div>
-HTML;
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-warning alert alert-dismissible" role="alert">Body 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
 
         $this->assertEqualsWithoutLE($expected, $html);
     }

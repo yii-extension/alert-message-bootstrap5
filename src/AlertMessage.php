@@ -47,22 +47,20 @@ final class AlertMessage extends Widget
                         $body = $message['body'];
                     }
 
-                    if (isset($message['closeButton']) && is_bool($message['closeButton'])) {
-                        $closeButtonEnabled = $message['closeButton'];
-                    }
-
                     if (isset($message['options']) && is_array($message['options'])) {
                         $options = array_merge($message['options'], $options);
                     }
 
-                    /** @psalm-suppress MixedArgumentTypeCoercion */
                     Html::addCssClass($options, $this->alertTypes[$type]);
 
+                    $alertWidget = Alert::widget();
+
+                    if (isset($message['closeButton']) && $message['closeButton'] === false) {
+                        $alertWidget = $alertWidget->withoutCloseButton();
+                    }
+
                     if ($body !== '') {
-                        $html .= Alert::widget()
-                            ->body($body)
-                            ->closeButtonEnabled($closeButtonEnabled)
-                            ->options($options);
+                        $html .= $alertWidget->body($body)->options($options);
                     }
                 }
             }
