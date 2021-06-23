@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Yii\Extension\Widget;
+namespace Yii\Extension\Bootstrap5;
 
+use Yii\Extension\Simple\Widget\AbstractWidget;
 use Yiisoft\Html\Html;
-use Yiisoft\Session\Flash\Flash;
-use Yiisoft\Widget\Widget;
-use Yiisoft\Yii\Bootstrap5\Alert;
+use Yiisoft\Session\Flash\FlashInterface;
 
-final class AlertMessage extends Widget
+final class AlertFlash extends AbstractWidget
 {
-    private Flash $flash;
+    private FlashInterface $flash;
 
     private array $alertTypes = [
         'danger' => 'alert-danger',
@@ -24,7 +23,7 @@ final class AlertMessage extends Widget
         'warning' => 'alert-warning',
     ];
 
-    public function __construct(Flash $flash)
+    public function __construct(FlashInterface $flash)
     {
         $this->flash = $flash;
     }
@@ -40,17 +39,17 @@ final class AlertMessage extends Widget
                 /** @var array $message */
                 foreach ($data as $message) {
                     $body = '';
-                    $options = [];
+                    $attributes = [];
 
                     if (isset($message['body']) && is_string($message['body'])) {
                         $body = $message['body'];
                     }
 
-                    if (isset($message['options']) && is_array($message['options'])) {
-                        $options = $message['options'];
+                    if (isset($message['attributes']) && is_array($message['attributes'])) {
+                        $attributes = $message['attributes'];
                     }
 
-                    Html::addCssClass($options, $this->alertTypes[$type]);
+                    Html::addCssClass($attributes, $this->alertTypes[$type]);
 
                     $alertWidget = Alert::widget();
 
@@ -59,7 +58,7 @@ final class AlertMessage extends Widget
                     }
 
                     if ($body !== '') {
-                        $html .= $alertWidget->body($body)->options($options);
+                        $html .= $alertWidget->attributes($attributes)->body($body);
                     }
                 }
             }
