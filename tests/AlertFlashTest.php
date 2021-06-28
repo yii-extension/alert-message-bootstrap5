@@ -30,12 +30,12 @@ final class AlertMessageTest extends TestCase
         unset($this->flash);
     }
 
-    public function testAlertMessageEmpty(): void
+    public function testEmpty(): void
     {
         $this->flash->add(
             'success',
             [
-                'body' =>  '',
+                'message' =>  '',
             ],
             true,
         );
@@ -44,7 +44,28 @@ final class AlertMessageTest extends TestCase
         $this->assertEquals('', $html);
     }
 
-    public function testAlertMessageCheckType(): void
+    public function testMessageAttributes(): void
+    {
+        $this->flash->add(
+            'success',
+            [
+                'attributes' => ['id' => 'testMe'],
+                'message' =>  'message message',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="testMe" class="alert-success alert alert-dismissible" role="alert">
+        message message
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageCheckType(): void
     {
         $this->flash->add(
             'testMe',
@@ -57,7 +78,7 @@ final class AlertMessageTest extends TestCase
         $this->flash->add(
             'success',
             [
-                'body' =>  'Body message',
+                'message' =>  'message message',
             ],
             true,
         );
@@ -65,19 +86,194 @@ final class AlertMessageTest extends TestCase
         $html = AlertFlash::widget([$this->flash])->render();
         $expected = <<<'HTML'
         <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">
-        Body message
+        message message
         <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testAlertMessageWithoutCloseButton(): void
+    public function testMessageDanger(): void
+    {
+        $this->flash->add(
+            'danger',
+            [
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-danger alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageDark(): void
+    {
+        $this->flash->add(
+            'dark',
+            [
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-dark alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageInfo(): void
+    {
+        $this->flash->add(
+            'info',
+            [
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageIcon(): void
+    {
+        $this->flash->add(
+            'info',
+            [
+                'icon' => 'fas fa-home',
+                'iconAttributes' => ['class' => 'me-1'],
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">
+        <span class="me-1"><i class="fas fa-home"></i></span>
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessagePrimary(): void
+    {
+        $this->flash->add(
+            'primary',
+            [
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-primary alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageSuccess(): void
     {
         $this->flash->add(
             'success',
             [
-                'body' =>  'Body message',
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageWarning(): void
+    {
+        $this->flash->add(
+            'warning',
+            [
+                'message' =>  'message 1',
+            ],
+            true,
+        );
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-warning alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageMultiple(): void
+    {
+        $this->flash->add(
+            'success',
+            [
+                'message' =>  'message 1'
+            ],
+            true
+        );
+
+        $this->flash->add(
+            'danger',
+            [
+                'message' =>  'message 2'
+            ],
+            true
+        );
+
+
+        $html = AlertFlash::widget([$this->flash])->render();
+        $expected = <<<'HTML'
+        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">
+        message 1
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div><div id="w1-alert" class="alert-danger alert alert-dismissible" role="alert">
+        message 2
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testMessageWithoutCloseButton(): void
+    {
+        $this->flash->add(
+            'success',
+            [
+                'message' =>  'message message',
                 'closeButton' => false,
             ],
             true,
@@ -86,185 +282,7 @@ final class AlertMessageTest extends TestCase
         $html = AlertFlash::widget([$this->flash])->render();
         $expected = <<<'HTML'
         <div id="w0-alert" class="alert-success alert" role="alert">
-        Body message
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageOptions(): void
-    {
-        $this->flash->add(
-            'success',
-            [
-                'attributes' => ['id' => 'testMe'],
-                'body' =>  'Body message',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="testMe" class="alert-success alert alert-dismissible" role="alert">
-        Body message
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageMultiple(): void
-    {
-        $this->flash->add(
-            'success',
-            [
-                'body' =>  'Body 1'
-            ],
-            true
-        );
-
-        $this->flash->add(
-            'danger',
-            [
-                'body' =>  'Body 2'
-            ],
-            true
-        );
-
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div><div id="w1-alert" class="alert-danger alert alert-dismissible" role="alert">
-        Body 2
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageDanger(): void
-    {
-        $this->flash->add(
-            'danger',
-            [
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-danger alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageDark(): void
-    {
-        $this->flash->add(
-            'dark',
-            [
-                'header' => 'Header 1',
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-dark alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageInfo(): void
-    {
-        $this->flash->add(
-            'info',
-            [
-                'header' => 'Header 1',
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-info alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessagePrimary(): void
-    {
-        $this->flash->add(
-            'primary',
-            [
-                'header' => 'Header 1',
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-primary alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageSuccess(): void
-    {
-        $this->flash->add(
-            'success',
-            [
-                'header' => 'Header 1',
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-success alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        </div>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testAlertMessageWarning(): void
-    {
-        $this->flash->add(
-            'warning',
-            [
-                'header' => 'Header 1',
-                'body' =>  'Body 1',
-            ],
-            true,
-        );
-
-        $html = AlertFlash::widget([$this->flash])->render();
-        $expected = <<<'HTML'
-        <div id="w0-alert" class="alert-warning alert alert-dismissible" role="alert">
-        Body 1
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+        message message
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, $html);

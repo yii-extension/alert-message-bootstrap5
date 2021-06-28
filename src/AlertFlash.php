@@ -36,29 +36,43 @@ final class AlertFlash extends AbstractWidget
         /** @var array $data */
         foreach ($flashes as $type => $data) {
             if (isset($this->alertTypes[$type]) && is_string($this->alertTypes[$type])) {
-                /** @var array $message */
-                foreach ($data as $message) {
-                    $body = '';
+                /** @var array $messages */
+                foreach ($data as $messages) {
+                    $icon = '';
+                    $iconAttributes = [];
+                    $message = '';
                     $attributes = [];
 
-                    if (isset($message['body']) && is_string($message['body'])) {
-                        $body = $message['body'];
+                    if (isset($messages['attributes']) && is_array($messages['attributes'])) {
+                        $attributes = $messages['attributes'];
                     }
 
-                    if (isset($message['attributes']) && is_array($message['attributes'])) {
-                        $attributes = $message['attributes'];
+                    if (isset($messages['icon']) && is_string($messages['icon'])) {
+                        $icon = $messages['icon'];
+                    }
+
+                    if (isset($messages['iconAttributes']) && is_array($messages['iconAttributes'])) {
+                        $iconAttributes = $messages['iconAttributes'];
+                    }
+
+                    if (isset($messages['message']) && is_string($messages['message'])) {
+                        $message = $messages['message'];
                     }
 
                     Html::addCssClass($attributes, $this->alertTypes[$type]);
 
                     $alertWidget = Alert::widget();
 
-                    if (isset($message['closeButton']) && $message['closeButton'] === false) {
+                    if (isset($messages['closeButton']) && $messages['closeButton'] === false) {
                         $alertWidget = $alertWidget->withoutCloseButton();
                     }
 
-                    if ($body !== '') {
-                        $html .= $alertWidget->attributes($attributes)->body($body);
+                    if ($message !== '') {
+                        $html .= $alertWidget
+                            ->attributes($attributes)
+                            ->icon($icon)
+                            ->iconAttributes($iconAttributes)
+                            ->message($message);
                     }
                 }
             }
