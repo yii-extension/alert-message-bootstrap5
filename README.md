@@ -40,9 +40,11 @@ final class Action
         $flash->add(
             'success', // types: [danger, dark, info, primary, secundary, success, warning]
             [
-                'body' => 'body message flash', // Its mandatory.
+                'attributes' => ['id' => 'testMe'], // Its optional.
                 'closeButton' => true, //Its optional for value default true.
-                'options' => ['id' => 'testMe'], // Its optional.
+                'icon' => 'fas fa-home', // Its optional.
+                'iconAttributes' => ['class' => 'me-1'], // Its optional.
+                'message' => 'Message flash', // Its mandatory.
             ],
             true,
         );
@@ -57,7 +59,7 @@ In layout:
 
 declare(strict_types=1);
 
-use Yii\Extension\Bootstrap5\AlertMessage;
+use Yii\Extension\Bootstrap5\AlertFlash;
 use Yiisoft\Session\Flash\FlashInterface;
 
 /**
@@ -65,7 +67,7 @@ use Yiisoft\Session\Flash\FlashInterface;
  */
 ?>
 
-<?= AlertMessage::widget($flash) ?>
+<?= AlertFlash::widget($flash) ?>
 ```
 
 ## Unit testing
